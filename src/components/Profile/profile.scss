@@ -1,0 +1,20 @@
+.left-sidebar {
+  $color-primary: rgb(0, 185, 142);
+
+  .nav-link {
+    &.active {
+      color: $color-primary;
+    }
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+}
+
+.bg-admin {
+  background: rgba(151, 187, 206, 0.24);
+}
+.bg-owner {
+  background: rgb(159, 186, 208);
+}

@@ -1,0 +1,47 @@
+.container-home {
+  $color-primary: rgb(0, 185, 142);
+
+  .color-primary {
+    color: $color-primary;
+  }
+
+  .house-item{
+    box-shadow: 0 0 30px rgba(0, 0, 0, .08);
+  }
+
+  .container-admin-team {
+    .team-item {
+      box-shadow: 0 0 30px rgba(0, 0, 0, .08);
+
+      .btn {
+        color: $color-primary;
+        background: #FFFFFF;
+        box-shadow: 0 0 30px rgba(0, 0, 0, .15);
+
+        &:hover {
+          background: $color-primary;
+          color: #FFFFFF;
+        }
+      }
+    }
+  }
+
+  .container-top5{
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+
+      /* Center slide text vertically */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
