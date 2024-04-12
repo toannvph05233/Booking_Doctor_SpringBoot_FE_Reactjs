@@ -147,7 +147,7 @@ const SearchBooking = () => {
     const handleCheckOutBooking = (booking) => {
         Swal.fire({
             title: 'Nhập nội dung đã khám?',
-            html: '<textarea cols="30" rows="40" id="swal-input-message" class="swal2-input" placeholder="Nhập thông tin đã khám"></textarea>',
+            html: '<textarea cols="30" rows="40" id="swal-input-message" class="swal2-input" placeholder="Nhập thông tin đã khám"></textarea><br/><textarea cols="30" rows="40" id="swal-input-price" type="number" class="swal2-input" placeholder="Nhập tổng giá tiền">',
             icon: 'question',
             showCancelButton: true,
             confirmButtonText: 'Xác nhận',
@@ -155,8 +155,9 @@ const SearchBooking = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 const message = document.getElementById('swal-input-message').value;
+                const price = document.getElementById('swal-input-price').value;
 
-                BookingService.checkoutBookingAdmin(booking.id, message)
+                BookingService.checkoutBookingAdmin(booking.id, message,price)
                     .then((res) => {
                         setIsLoad(!isLoad);
                         Swal.fire({

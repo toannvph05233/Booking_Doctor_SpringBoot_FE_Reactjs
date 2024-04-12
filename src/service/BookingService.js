@@ -32,8 +32,8 @@ const BookingService = {
     checkinBookingAdmin: (idBooking) => {
         return instance.post("/api/bookings/checkin/" + idBooking);
     },
-    checkoutBookingAdmin: (idBooking, message) => {
-        const obj = {result: message};
+    checkoutBookingAdmin: (idBooking, message, price) => {
+        const obj = {result: message, price: price};
         return instance.post("/api/bookings/checkout/" + idBooking, obj);
     },
     createReview: (review) => {
