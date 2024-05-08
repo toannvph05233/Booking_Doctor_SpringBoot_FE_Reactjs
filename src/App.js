@@ -29,6 +29,7 @@ import Component404 from "./errorClient/Component404";
 import Component403 from "./errorClient/Component403";
 import ChatBox from "./components/ChatBox/ChatBox";
 import CreateDoctor from "./components/Profile/CreateDoctor/CreateDoctor";
+import ListPets from "./components/Pet/ListPets";
 
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
                     <Route path={"list-owner"} element={<ListOwner/>}/>
                     <Route path={"confirm-owner"} element={<ConfirmOwner/>}/>
                     <Route path={"rental-history"} element={<RentalHistory/>}/>
+                    <Route path={"pets"} element={<ListPets/>}/>
                 </Route>
                 <Route path={'*'} element={<Navigate to="/404" replace />}/>
                 <Route path={'/index.html'} element={<Navigate to="/" replace />}/>

@@ -82,7 +82,13 @@ const LeftSidebar = () => {
                                     Thông tin cá nhân
                                 </NavLink>
                             </li>
-
+                            <li className="px-3 py-2">
+                                <NavLink to="/profile/pets"
+                                         className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
+                                    <i className="fa-solid fa-user me-3"></i>
+                                    <span className="hide-menu">Danh sách thú cưng</span>
+                                </NavLink>
+                            </li>
                             <li className="px-3 py-2">
                                 <NavLink to="/profile/edit-profile"
                                          className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>

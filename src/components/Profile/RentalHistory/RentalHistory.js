@@ -243,7 +243,7 @@ const RentalHistory = () => {
         return (
             <div className='col-9'>
                 <div>
-                    <h3 className="text-uppercase text-center mb-4">Lịch sử thuê nhà</h3>
+                    <h3 className="text-uppercase text-center mb-4">Lịch sử đặt lịch</h3>
                     <div className="mb-3 py-4 px-3"
                          style={{backgroundColor: "rgb(0,185,142)"}}>
                         <div className="row g-2">

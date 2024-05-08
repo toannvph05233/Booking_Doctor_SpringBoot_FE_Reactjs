@@ -3,6 +3,7 @@ import {formatCurrency, getTotalDays} from "../../service/format";
 import StarsReview from "./StarsReview/StarsReview";
 import Description from "./Description/Description";
 import Review from "./Review/Review";
+import axios from 'axios';
 import './houseDetail.scss';
 import Facility from "./Facility/Facility";
 import {getHouseById} from "../../service/doctorService";
@@ -30,6 +31,8 @@ registerLocale("vi", vi);
 const HouseDetail = () => {
     const [showDesc, setShowDesc] = useState('desc');
     const [house, setHouse] = useState({});
+    const [pet, setPets] = useState([]);
+    const [selectedPetId, setSelectedPetId] = useState(0);
     const [reviews, setReviews] = useState({});
     const [images, setImages] = useState([]);
     const [avgRating, setAvgRating] = useState(0);
@@ -75,6 +78,16 @@ const HouseDetail = () => {
             behavior: "smooth"
         })
     }, [unreadNotify])
+
+    const getAllPet = (idAccount) => {
+        axios.get('http://localhost:8080/api/pets/'+idAccount)
+            .then(response => {
+                setPets(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching accounts:', error);
+            });
+    }
 
     useEffect(() => {
         getAllReviewsByHouseId(houseId, currentPage - 1).then(response => {
@@ -150,6 +163,7 @@ const HouseDetail = () => {
             return;
         }
         setShowModal(true);
+        getAllPet(account.id);
     }
 
 
@@ -190,7 +204,8 @@ const HouseDetail = () => {
             total: house.price,
             status: 'Chờ xác nhận',
             doctor: house,
-            account: {id: account.id}
+            account: {id: account.id},
+            pet:{id:selectedPetId}
         }
         setIsProgressing(true);
         BookingService.bookingHouse(data).then(response => {
@@ -320,7 +335,6 @@ const HouseDetail = () => {
                                                     className="form-control"
                                                     id="startDate"
                                                     placeholderText="Chọn ngày đặt lịch"
-
                                                 />
                                                 <small className="text-danger">{errorStartDate}</small>
                                             </div>
@@ -338,6 +352,24 @@ const HouseDetail = () => {
                                                 <textarea cols={50} onChange={changeContent} value={content}
                                                           placeholder="Nhập tình trạng của thú cưng."/>
                                             </div>
+                                            <div className="col-6">
+                                                <label htmlFor="petSelect" className="form-label">
+                                                    <i className="bi bi-paw me-2"></i>Chọn thú cưng muốn khám
+                                                </label>
+                                                <select
+                                                    className="form-select"
+                                                    id="petSelect"
+                                                    onChange={(e) => setSelectedPetId(e.target.value)}
+                                                >
+                                                    <option value="">Chọn pet</option>
+                                                    {pet.map((pet, index) => (
+                                                        <option key={index} value={pet.id}>
+                                                            {pet.name}
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                            </div>
+
                                             <div className="total-price pt-4">
                                                 <h4 className="mb-3">Chi tiết lịch đặt:</h4>
                                                 <p className="fs-6 fw-medium">Thời gian
