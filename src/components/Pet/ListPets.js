@@ -6,11 +6,6 @@ import Swal from "sweetalert2";
 const ListPets = () => {
     const account = useSelector(state => state.account);
     const [pet, setPets] = useState([]);
-    const [newPetData, setNewPetData] = useState({
-        name: '',
-        birthday: '',
-        weight: ''
-    });
 
     useEffect(() => {
         getAllPet(account.id);
@@ -41,12 +36,10 @@ const ListPets = () => {
                 const name = Swal.getPopup().querySelector('#name').value;
                 const birthday = Swal.getPopup().querySelector('#birthday').value;
                 const weight = Swal.getPopup().querySelector('#weight').value;
-                setNewPetData({ name, birthday, weight });
+                createPet({ name, birthday, weight });
             }
         }).then((result) => {
-            if (result.isConfirmed) {
-                createPet();
-            }
+
         })
     }
 
@@ -90,9 +83,9 @@ const ListPets = () => {
     }
 
 
-    const createPet = () => {
+    const createPet = (pet) => {
         axios.post('http://localhost:8080/api/pets', {
-            ...newPetData,
+            ...pet,
             account: {id:account.id}
         })
             .then(response => {
